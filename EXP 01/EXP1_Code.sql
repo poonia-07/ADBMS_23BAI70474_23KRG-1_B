@@ -82,4 +82,10 @@ JOIN courses  ON department.department_id = courses.department_id
 GROUP BY department.department_id, department.department_name
 HAVING COUNT(*) >= 2;
 
-GRANT SELECT ON courses TO guest
+CREATE LOGIN TEST_LOGIN
+WITH PASSWORD = 'ABC@123'
+
+CREATE USER TEST_USER
+FOR LOGIN TEST_LOGIN
+
+GRANT SELECT, UPDATE, DELETE ON course TO TEST_USER
